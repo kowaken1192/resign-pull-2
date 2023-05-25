@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/account', to: 'account#show'
   resources :reservations
   resources :rooms do
     collection do
@@ -28,3 +29,4 @@ Rails.application.routes.draw do
     end
   end
 end
+
