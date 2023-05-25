@@ -1,0 +1,44 @@
+<div>
+  <%= image_tag "https://rails-02-sample.herokuapp.com/assets/room/default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png" %>
+</div>
+<div>
+  <h1 class="hotel-name">
+    <%= @room.name %>
+  </h1>
+</div>
+<div class="introduction">
+  <%= @room.introduction %>
+</div>
+<div class="price">
+  宿泊料金： <%= @room.price %>円/日
+</div>
+<%= notice %>
+<%= alert %>
+<%= form_with model: @reservation, url: confirm_reservation_path, method: :post do |f| %>
+<%= render 'layouts/error_messages', model: @reservation %>
+  <table>
+    <tr>
+      <th><%= f.label :check_in, "チェックイン" %></th>
+      <td><%= f.date_field :check_in %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :check_out, "チェックアウト" %></th>
+      <td><%= f.date_field :check_out %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :number_of_people, "人数" %></th>
+      <td><%= f.text_field :number_of_people %></td>
+    </tr>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+  </table>
+
+  <%= f.submit "登録する" %>
+<% end %>
+
+<%= link_to '戻る', rooms_path, class: "back-link" %>
+
+
