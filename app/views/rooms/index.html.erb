@@ -23,10 +23,5 @@
   </tbody>
 </table>
 
-<%= search_form_for @q, url: search_rooms_path do |f| %>
 
-  <%= f.label :name_or_introduction_cont ,"キーワード検索" %>
-  <%= f.search_field :name_or_introduction_cont %>
-  <%= f.submit "探す", class: "search-button" %>
-<% end %>
 
