@@ -6,7 +6,7 @@ class Room < ApplicationRecord
   validates :address , presence: true
   validates :price , presence: true , numericality: { greater_than_or_equal_to: 0 }
   validates :introduction, presence: true 
-
+  mount_uploader :image, AvatarUploader
   def self.ransackable_attributes(auth_object = nil)
     ["address", "created_at", "id", "introduction", "name", "price", "room_image", "updated_at", "user_id","room_id"]
   end

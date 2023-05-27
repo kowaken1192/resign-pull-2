@@ -13,17 +13,25 @@
     </tr>
   </thead>
   <tbody>
-    <% @reservations.each do |reservation| %>
-      <tr>
-        <td><%= image_tag "https://rails-02-sample.herokuapp.com/assets/room/default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png", width: 200 %></td>
-        <td><%= Room.find(reservation.room_id).name %></td>
-        <td><%= Room.find(reservation.room_id).introduction %></td>
-        <td><%= Room.find(reservation.room_id).price * reservation.number_of_people * (reservation.check_out - reservation.check_in).to_i %>円</td>
-        <td><%= reservation.check_in.strftime('%Y/%m/%d') %></td>
-        <td><%= reservation.check_out.strftime('%Y/%m/%d') %></td>
-        <td><%= reservation.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-        <td><%= link_to '編集',   edit_reservation_path(reservation) %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <% @reservations.each do |reservation| %>
+    <% room = Room.find(reservation.room_id) %>
+    <tr>
+      <td>
+        <% if room.image? %>
+            <%= image_tag room.image.url, width: 200 %>
+        <% else %>
+          <%= image_tag 'https://rails-02-sample.herokuapp.com/assets/room/default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png' %>
+        <% end %>
+      </td>
+      <td><%= room.name %></td>
+      <td><%= room.introduction %></td>
+      <td><%= room.price * reservation.number_of_people * (reservation.check_out - reservation.check_in).to_i %>円</td>
+      <td><%= reservation.check_in.strftime('%Y/%m/%d') %></td>
+      <td><%= reservation.check_out.strftime('%Y/%m/%d') %></td>
+      <td><%= reservation.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+      
+    </tr>
+  <% end %>
+</tbody>
+
 </table>

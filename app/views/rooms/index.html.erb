@@ -11,8 +11,14 @@
   </thead>
   <tbody>
     <% @rooms.each do |room| %>
-    <tr>
-      <td><%= image_tag "https://rails-02-sample.herokuapp.com/assets/room/default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png", width:200%> <br>
+      <td>
+    <% if room.image? %>
+      <%= image_tag room.image.url, width: 200 %>
+    <% else %>
+      <%= image_tag 'https://rails-02-sample.herokuapp.com/assets/room/default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png' %>
+    <% end %>
+    <!-- 他のテーブルのデータ表示 -->
+      </td>
       <td><%= link_to room.name, room_path(room) %></td>
       <td><%= room.introduction %></td>
       <td><%= room.price %>円</td>

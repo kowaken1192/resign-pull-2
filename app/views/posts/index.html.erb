@@ -14,24 +14,35 @@
  
 <body>
 <header>
-<% if user_signed_in? %>
-  <!-- ユーザーがログインしていた時の処理 -->
-<div class="dropdown">
-    <a class="dropdown-toggle ml-auto" href="#" id="user-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    名前 <%= current_user.name %>
-    </a>
-    </a>
-<div class="dropdown-menu" aria-labelledby="user-dropdown">
-  <%= link_to "プロフィール", user_path(current_user), class: 'dropdown-item' %>
-  <%= link_to "施設予約一覧",  reservations_path, class: 'dropdown-item' %> 
-  <%= link_to "部屋予約一覧", rooms_path, class: 'dropdown-item' %>
-  <%= link_to 'アカウント', account_path, class: 'dropdown-item' %>
-  <%= link_to '施設新規登録', new_room_path, class: 'dropdown-item' %>
-  <div class="dropdown-divider"></div>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
-</div>
-</div>
-</div>
+  <% if user_signed_in? %>
+    <!-- ユーザーがログインしていた時の処理 -->
+    <div class="dropdown ml-auto">
+      <div class="d-flex align-items-center">
+        <h5 class="mr-2">アイコン画像</h5>
+        <div class="icon">
+          <% if current_user.avatar? %>
+            <%= image_tag current_user.avatar.url, size: '70x70' %>
+          <% else %>
+            <%= image_tag 'https://rails-02-sample.herokuapp.com/assets/common/default-avatar-7a6cbfd7993e89f24bfc888f4a035a83c6f1428b8bdc47eed9095f2799a40153.png' %>
+          <% end %>
+        </div>
+      </div>
+      <a class="dropdown-toggle" href="#" id="user-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <h5 class="ml-2 mr-3"> 名前 </h5>
+        <%= current_user.name %>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="user-dropdown">
+        <%= link_to "プロフィール", user_path(current_user), class: 'dropdown-item' %>
+        <%= link_to "予約一覧", reservations_path, class: 'dropdown-item' %> 
+        <%= link_to "部屋一覧", rooms_path, class: 'dropdown-item' %>
+        <%= link_to 'アカウント', account_path, class: 'dropdown-item' %>
+        <%= link_to '施設新規登録', new_room_path, class: 'dropdown-item' %>
+        <div class="dropdown-divider"></div>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+      </div>
+    </div>
+</header>
+
  
 
 <div class = "search_index">
@@ -86,13 +97,16 @@
 <% else %>
   <!-- ユーザーがログインしていなかった時の処理 -->
 <header>
-  <%= image_tag "https://rails-02-sample.herokuapp.com/assets/common/default-avatar-7a6cbfd7993e89f24bfc888f4a035a83c6f1428b8bdc47eed9095f2799a40153.png" %>
   <%= link_to "ログイン", new_user_session_path, class: 'post' %>
   <%= link_to "新規登録", new_user_registration_path, class: 'post' %>
 </header>
 
-<h2> ポテパンキャンプ　宿泊アプリ　</h2>
- <img src="https://rails-02-sample.herokuapp.com/assets/home/cover-lg.jpg" width="1000" alt="画像">
+
+
+
+<h4> ポテパンキャンプ　宿泊アプリ　</h4>
+
+
 <% end %>
 </header>
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

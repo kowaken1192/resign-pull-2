@@ -1,6 +1,9 @@
-<div>
-  <%= image_tag "https://rails-02-sample.herokuapp.com/assets/room/default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png" %>
-</div>
+ <% if @room.image?  %>
+      <%= image_tag @room.image.url  %>
+    <% else %>
+      <%= image_tag 'https://rails-02-sample.herokuapp.com/assets/room/default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png' %>
+    <% end %>
+
 <div>
   <h1 class="hotel-name">
     <%= @room.name %>
@@ -39,6 +42,7 @@
   <%= f.submit "登録する" %>
 <% end %>
 
-<%= link_to '戻る', rooms_path, class: "back-link" %>
+<%= link_to '戻る', new_room_path, class: "back-link" %>
+
 
 
