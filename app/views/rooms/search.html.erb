@@ -1,0 +1,19 @@
+<div class = "search" > 
+    <h1>検索結果：<%= @results.count %>件</h1>
+
+    <div class = "search_base" >
+        <% @results.each do |results| %>
+                    <div class = "search_room" >
+                        <h1>施設名<%= results.name %></h1>
+                        <h4>施設詳細:<%= results.introduction %></h4>
+                        <h4>エリア名：<%= results.address %></h4>
+                        <h4>金額：<%= results.price %>円</h4>
+                        <h4><%= link_to "詳細を見る", room_path(results) %></h4>
+                    </div>
+            </div>
+        <% end %>
+    </div>
+    <a href="javascript:history.back()">[戻る]</a>
+</div>
+
+

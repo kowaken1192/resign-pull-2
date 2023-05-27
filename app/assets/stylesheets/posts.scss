@@ -1,0 +1,62 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+/* ヘッダー */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px;
+    background-color: #f0f0f0;
+  }
+  
+  /* ドロップダウンメニュー */
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+  }
+  
+  /* アイコン画像と名前の要素 */
+  .icon h5,
+  .dropdown-toggle h5 {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .icon img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* ドロップダウンメニューのアイテム */
+  .dropdown-item {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 5px 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f0f0f0;
+  }
+  

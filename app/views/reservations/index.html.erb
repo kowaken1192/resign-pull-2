@@ -1,0 +1,40 @@
+<%= link_to "もう1度 ログイン画面に戻る場合はこちら", posts_path, style: "font-size: 20px;" %>
+<h3>予約済み施設一覧</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>施設画像</th>
+      <th>施設名</th>
+      <th>施設詳細</th>
+      <th>金額</th>
+      <th>チェックイン</th>
+      <th>チェックアウト</th>
+      <th>予約確定日時</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @reservations.each do |reservation| %>
+    <% room = Room.find(reservation.room_id) %>
+    <tr>
+      <td>
+        <% if room.image? %>
+            <%= image_tag room.image.url, width: 200 %>
+        <% else %>
+          <%= image_tag 'https://rails-02-sample.herokuapp.com/assets/room/default-image-4e0ac6b8d01335b5b22fe6586af13644ae51dddb6aeabf35b9174e80f13cd09d.png' %>
+        <% end %>
+      </td>
+      <td><%= room.name %></td>
+      <td><%= room.introduction %></td>
+      <td><%= room.price * reservation.number_of_people * (reservation.check_out - reservation.check_in).to_i %>円</td>
+      <td><%= reservation.check_in.strftime('%Y/%m/%d') %></td>
+      <td><%= reservation.check_out.strftime('%Y/%m/%d') %></td>
+      <td><%= reservation.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+      
+    </tr>
+  <% end %>
+</tbody>
+</table>
+
+
+

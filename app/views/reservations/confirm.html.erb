@@ -1,0 +1,37 @@
+<%= form_with model: @reservation ,url: reservations_path do |f| %>
+
+  <h1>予約確認ページ</h1>
+  <table>
+    <tr>
+      <td>チェックイン日:</td>
+      <td><%= @reservation.check_in %></td>
+    </tr>
+    <tr>
+      <td>チェックアウト日:</td>
+      <td><%= @reservation.check_out %></td>
+    </tr>
+    <tr>
+      <td>宿泊日数:</td>
+      <td><%= @total_day %>日</td>
+    </tr>
+    <tr>
+      <td>人数:</td>
+      <td><%= @reservation.number_of_people %></td>
+    </tr>
+    <tr>
+      <td>支払い金額:</td>
+      <td><%= @total_price %>円</td>
+    </tr>
+    <tr>
+      <td>金額:</td>
+      <!-- 金額の表示方法についての情報が不足しているため、具体的なコードを記載することができません -->
+    </tr>
+  </table>
+  <%= f.hidden_field :check_in, value: @reservation.check_in %>
+  <%= f.hidden_field :check_out, value: @reservation.check_out %>
+  <%= f.hidden_field :number_of_people, value: @reservation.number_of_people %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :room_id, value: @room.id %>
+  <%= f.submit "予約する" %>
+<% end %>
+
