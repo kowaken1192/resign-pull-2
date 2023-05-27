@@ -16,7 +16,7 @@ class ReservationsController < ApplicationController
     @room = Room.find(params[:reservation][:room_id])
     @reservation.room_id = @room.id
     if @reservation.save
-      redirect_to @reservation, notice: 'Reservation was successfully created.'
+      redirect_to reservations_path, notice: 'Reservation was successfully created.'
     else
       render "rooms/show"
     end
@@ -69,7 +69,7 @@ class ReservationsController < ApplicationController
     end
 
     if @reservation.number_of_people.nil?
-      redirect_to @room, alert: "正しい人数を入力してください"
+      redirect_to @room, alert: "人数を入力してください おそらく０になっています０になっています"
       return
     end
     

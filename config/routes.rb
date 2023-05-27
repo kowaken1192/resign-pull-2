@@ -1,17 +1,17 @@
 Rails.application.routes.draw do
+  resources :posts
+  root "posts#index"
   get '/account', to: 'account#show'
+  get '/reservations/confirm', to: 'reservations#index'
   resources :reservations
   resources :rooms do
     collection do
       get 'search', to: 'rooms#search'
     end
   end
-  resources :reservations
   devise_for :users
   resources :rooms
   get 'accounts/show'
-  resources :posts
-  root "posts#index"
   resources :users
   resource :account, only: [:edit, :update, :show]
   get '/account', to: 'accounts#show'
@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   post '/rooms', to: 'rooms#update'
   get '/reservations/confirm', to: 'reservations#confirm', as: 'confirm_reservation'
   post '/reservations/confirm', to: 'reservations#confirm'
-  get '/reservations/confirm', to: 'reservations#index'
   get '/rooms/search', to: 'rooms#search'
 
   resources :reservations, only: [:index, :new, :create, :show] do
